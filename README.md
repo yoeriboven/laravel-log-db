@@ -34,6 +34,8 @@ php artisan migrate
 Now add a new channel to `config/logging.php`.
 
 ```php
+use Yoeriboven\LaravelLogDb\DatabaseLogger;
+
 return [
     'channels' => [
         'db' => [
