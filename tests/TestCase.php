@@ -4,7 +4,7 @@ namespace Yoeriboven\LaravelLogDb\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Yoeriboven\LaravelLogDb\LaravelLogDbServiceProvider;
+use Yoeriboven\LaravelLogDb\DatabaseLoggerServiceProvider;
 
 class TestCase extends Orchestra
 {
@@ -20,7 +20,7 @@ class TestCase extends Orchestra
     protected function getPackageProviders($app)
     {
         return [
-            LaravelLogDbServiceProvider::class,
+            DatabaseLoggerServiceProvider::class,
         ];
     }
 

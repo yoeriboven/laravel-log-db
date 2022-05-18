@@ -43,11 +43,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Yoeriboven\\LaravelLogDb\\LaravelLogDbServiceProvider"
-            ],
-            "aliases": {
-                "LaravelLogDb": "Yoeriboven\\LaravelLogDb\\Facades\\LaravelLogDb"
-            }
+                "Yoeriboven\\LaravelLogDb\\DatabaseLoggerServiceProvider"
+            ]
         }
     },
     "minimum-stability": "dev",

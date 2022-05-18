@@ -6,7 +6,7 @@ use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 use Yoeriboven\LaravelLogDb\Commands\LaravelLogDbCommand;
 
-class LaravelLogDbServiceProvider extends PackageServiceProvider
+class DatabaseLoggerServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
@@ -17,7 +17,6 @@ class LaravelLogDbServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('laravel-log-db')
-            ->hasConfigFile()
-            ->hasMigration('create_laravel-log-db_table');
+            ->hasMigration('create_laravel_log_table');
     }
 }
