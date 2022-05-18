@@ -7,6 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class LogMessage extends Model
 {
+    /**
+     * The attributes that aren't mass assignable.
+     *
+     * @var array
+     */
+    protected $guarded = [];
 
     /**
      * Indicates if the model should be timestamped.

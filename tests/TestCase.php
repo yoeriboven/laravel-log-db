@@ -18,9 +18,7 @@ class TestCase extends Orchestra
     {
         config()->set('database.default', 'testing');
 
-        /*
-        $migration = include __DIR__.'/../database/migrations/create_laravel-log-db_table.php.stub';
+        $migration = include __DIR__.'/../database/migrations/create_laravel_log_table.php.stub';
         $migration->up();
-        */
     }
 }
