@@ -1,6 +1,6 @@
 {
     "name": "yoeriboven/laravel-log-db",
-    "description": "This is my package laravel-log-db",
+    "description": "A database driver for logging with Laravel",
     "keywords": [
         "yoeriboven",
         "laravel",
@@ -28,8 +28,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Yoeriboven\\LaravelLogDb\\": "src",
-            "Yoeriboven\\LaravelLogDb\\Database\\Factories\\": "database/factories"
+            "Yoeriboven\\LaravelLogDb\\": "src"
         }
     },
     "autoload-dev": {
