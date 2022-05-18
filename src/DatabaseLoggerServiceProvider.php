@@ -4,7 +4,6 @@ namespace Yoeriboven\LaravelLogDb;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Yoeriboven\LaravelLogDb\Commands\LaravelLogDbCommand;
 
 class DatabaseLoggerServiceProvider extends PackageServiceProvider
 {
