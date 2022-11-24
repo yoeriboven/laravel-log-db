@@ -30,4 +30,12 @@ class LogMessage extends Model
         'context' => AsArrayObject::class,
         'extra' => AsArrayObject::class,
     ];
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        if(env('LOGGER_DB_CONNECTION')){
+            $this->connection = env('LOGGER_DB_CONNECTION');
+        }
+    }
 }
