@@ -39,8 +39,9 @@ use Yoeriboven\LaravelLogDb\DatabaseLogger;
 return [
     'channels' => [
         'db' => [
-            'driver' => 'custom',
-            'via'    => DatabaseLogger::class,
+            'driver'     => 'custom',
+            'via'        => DatabaseLogger::class,
+            'connection' => env('LOG_DB_CONNECTION', env('DB_CONNECTION'))
         ],
     ]   
 ]
@@ -58,12 +59,6 @@ use Illuminate\Support\Facades\Log;
 Log::channel('db')->info('Your message');
 ```
 
-If you have multiple db connections, you could set the connection to be used in your .env file:
-
-```php
-//in your .env file, include
-LOGGER_DB_CONNECTION = pgsql 
-```
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.

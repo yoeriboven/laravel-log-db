@@ -34,8 +34,10 @@ class LogMessage extends Model
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
-        if(env('LOGGER_DB_CONNECTION')){
-            $this->connection = env('LOGGER_DB_CONNECTION');
-        }
+
+        $connection = config('logging.channels.db.connection') ??
+                        config('database.default');
+
+        $this->setConnection($connection);
     }
 }

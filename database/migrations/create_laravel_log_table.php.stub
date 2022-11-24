@@ -7,26 +7,17 @@ use Illuminate\Support\Facades\Schema;
 return new class () extends Migration {
     public function up()
     {
-        if(env('LOGGER_DB_CONNECTION')){
-            Schema::connection(env('LOGGER_DB_CONNECTION'))->create('log_messages', function (Blueprint $table) {
-                $table->id();
-                $table->string('level_name');
-                $table->unsignedSmallInteger('level');
-                $table->string('message');
-                $table->dateTime('logged_at');
-                $table->json('context');
-                $table->json('extra');
-            });
-        }else{
-            Schema::create('log_messages', function (Blueprint $table) {
-                $table->id();
-                $table->string('level_name');
-                $table->unsignedSmallInteger('level');
-                $table->string('message');
-                $table->dateTime('logged_at');
-                $table->json('context');
-                $table->json('extra');
-            });
-        }
+        $connection = config('logging.channels.db.connection') ??
+                        config('database.default');
+
+        Schema::connection($connection)->create('log_messages', function (Blueprint $table) {
+            $table->id();
+            $table->string('level_name');
+            $table->unsignedSmallInteger('level');
+            $table->string('message');
+            $table->dateTime('logged_at');
+            $table->json('context');
+            $table->json('extra');
+        });
     }
 };
