@@ -1,5 +1,8 @@
 # Changelog
 
+### 1.1.1
+Fixed a bug that caused exceptions to report incorrectly [#10](https://github.com/yoeriboven/laravel-log-db/pull/10)
+
 ### 1.1
 Added support for Laravel 10
 
