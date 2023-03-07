@@ -10,7 +10,7 @@ class DatabaseHandler extends AbstractProcessingHandler
     /**
      * @inheritDoc
      */
-    protected function write(array $record): void
+    protected function write($record): void
     {
         LogMessage::create([
             'level' => $record['level'],

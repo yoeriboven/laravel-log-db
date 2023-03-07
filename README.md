@@ -10,6 +10,8 @@
 
 This package provides a driver to store log messages in the database.
 
+Tested on Laravel 9 and 10.
+
 ```php
 use Illuminate\Support\Facades\Log;
 
