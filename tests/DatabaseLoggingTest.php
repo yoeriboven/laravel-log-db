@@ -3,6 +3,7 @@
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Log;
 use Yoeriboven\LaravelLogDb\DatabaseLogger;
+use Yoeriboven\LaravelLogDb\Models\LogMessage;
 
 uses(RefreshDatabase::class);
 
@@ -28,4 +29,15 @@ it('stores the logs context', function () {
     $this->assertDatabaseHas('log_messages', [
         'context' => json_encode(['user_id' => 999]),
     ]);
+});
+
+it('correctly logs exceptions', function () {
+    config()->set('logging.default', 'db');
+
+    report(new Exception('This exception should be logged.'));
+
+    $this->assertStringContainsString(
+        'This exception should be logged.',
+        LogMessage::first()->context['exception']
+    );
 });
