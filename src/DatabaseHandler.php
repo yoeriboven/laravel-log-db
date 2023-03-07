@@ -10,8 +10,9 @@ class DatabaseHandler extends AbstractProcessingHandler
     /**
      * @inheritDoc
      */
-    protected function write(array $record): void
+    protected function write(\Monolog\LogRecord $record): void
     {
+        $record = $record->toArray();
         LogMessage::create([
             'level' => $record['level'],
             'level_name' => $record['level_name'],
