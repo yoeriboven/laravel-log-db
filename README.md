@@ -8,6 +8,7 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/yoeriboven/laravel-log-db/Check%20&%20fix%20styling?label=code%20style)](https://github.com/yoeriboven/laravel-log-db/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain/badge.svg)
 [![Total Downloads](https://img.shields.io/packagist/dt/yoeriboven/laravel-log-db.svg?style=flat-square)](https://packagist.org/packages/yoeriboven/laravel-log-db)
 
+![example](https://github.com/yoeriboven/laravel-log-db/actions/workflows/php-cs-fixer.yml/badge.svg)
 This package provides a driver to store log messages in the database.
 
 Tested on Laravel 9 and 10.
