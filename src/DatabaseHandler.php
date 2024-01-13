@@ -2,6 +2,8 @@
 
 namespace Yoeriboven\LaravelLogDb;
 
+use Exception;
+use Illuminate\Support\Facades\Log;
 use Monolog\Handler\AbstractProcessingHandler;
 use Throwable;
 use Yoeriboven\LaravelLogDb\Models\LogMessage;
@@ -21,13 +23,23 @@ class DatabaseHandler extends AbstractProcessingHandler
             $record['context']['exception'] = (string) $exception;
         }
 
-        LogMessage::create([
-            'level' => $record['level'],
-            'level_name' => $record['level_name'],
-            'message' => $record['message'],
-            'logged_at' => $record['datetime'],
-            'context' => $record['context'],
-            'extra' => $record['extra'],
-        ]);
+        try {
+            LogMessage::create([
+                'level' => $record['level'],
+                'level_name' => $record['level_name'],
+                'message' => $record['message'],
+                'logged_at' => $record['datetime'],
+                'context' => $record['context'],
+                'extra' => $record['extra'],
+            ]);
+        } catch (Exception $e) {
+            $fallbackChannels = config('logging.channels.fallback.channels', ['single']);
+
+            Log::stack($fallbackChannels)->debug($record['formatted']);
+
+            Log::stack($fallbackChannels)->debug('Could not log to the database.', [
+                'exception' => $e
+            ]);
+        }
     }
 }

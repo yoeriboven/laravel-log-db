@@ -60,6 +60,24 @@ use Illuminate\Support\Facades\Log;
 Log::channel('db')->info('Your message');
 ```
 
+### Fallback channel
+
+In case your database isn't ready you can assign a fallback driver to let you know of any issues.
+
+```php
+// config/logging.php
+
+return [
+    'channels' => [
+        'fallback' => [
+            'channels' => ['single'],
+        ],
+    ]   
+]
+```
+
+If no fallback channel is defined it will default to the `single` channel.
+
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
