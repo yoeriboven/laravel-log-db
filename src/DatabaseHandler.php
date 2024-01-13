@@ -38,7 +38,7 @@ class DatabaseHandler extends AbstractProcessingHandler
             Log::stack($fallbackChannels)->debug($record['formatted']);
 
             Log::stack($fallbackChannels)->debug('Could not log to the database.', [
-                'exception' => $e
+                'exception' => $e,
             ]);
         }
     }
