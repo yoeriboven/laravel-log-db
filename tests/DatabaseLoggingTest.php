@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Log;
 use Yoeriboven\LaravelLogDb\DatabaseLogger;
 use Yoeriboven\LaravelLogDb\Models\LogMessage;
 
-uses(RefreshDatabase::class);
+uses(\Illuminate\Foundation\Testing\DatabaseMigrations::class);
 
 beforeEach(function () {
     config()->set('logging.channels.db', [
