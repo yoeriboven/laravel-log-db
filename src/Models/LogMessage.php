@@ -35,8 +35,7 @@ class LogMessage extends Model
     {
         parent::__construct($attributes);
 
-        $connection = config('logging.channels.db.connection') ??
-                        config('database.default');
+        $connection = config('logging.channels.db.connection') ?? config('database.default');
 
         $this->setConnection($connection);
     }
