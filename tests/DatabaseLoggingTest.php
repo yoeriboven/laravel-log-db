@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Log;
 use Yoeriboven\LaravelLogDb\DatabaseLogger;
 use Yoeriboven\LaravelLogDb\Models\LogMessage;
