@@ -68,6 +68,3 @@ describe('custom connection', function () {
         ], 'custom');
     });
 });
-
-
-
