@@ -66,6 +66,3 @@ it('logs to the correct connection', function () {
         'message' => 'Test message',
     ], 'custom');
 });
-
-
-
