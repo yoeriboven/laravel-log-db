@@ -11,7 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('log_messages', function (Blueprint $table) {
+        $connection = config('logging.channels.db.connection') ?? config('database.default');
+
+        Schema::connection($connection)->create('log_messages', function (Blueprint $table) {
             $table->id();
             $table->string('level_name');
             $table->unsignedSmallInteger('level');

@@ -41,8 +41,9 @@ use Yoeriboven\LaravelLogDb\DatabaseLogger;
 return [
     'channels' => [
         'db' => [
-            'driver' => 'custom',
-            'via'    => DatabaseLogger::class,
+            'driver'     => 'custom',
+            'via'        => DatabaseLogger::class,
+            'connection' => env('LOG_DB_CONNECTION', env('DB_CONNECTION'))
         ],
     ]   
 ]
