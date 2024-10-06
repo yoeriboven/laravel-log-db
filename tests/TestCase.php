@@ -11,7 +11,7 @@ class TestCase extends Orchestra
     {
         parent::setUp();
 
-//        $this->setUpDatabase();
+        //        $this->setUpDatabase();
         $migration = include __DIR__.'/../database/migrations/create_laravel_log_table.php.stub';
         $migration->up();
     }
@@ -30,10 +30,10 @@ class TestCase extends Orchestra
 
     }
 
-//    protected function setUpDatabase()
-//    {
-//        (new CreateActivityLogTable())->up();
-//        (new AddEventColumnToActivityLogTable())->up();
-//        (new AddBatchUuidColumnToActivityLogTable())->up();
-//    }
+    //    protected function setUpDatabase()
+    //    {
+    //        (new CreateActivityLogTable())->up();
+    //        (new AddEventColumnToActivityLogTable())->up();
+    //        (new AddBatchUuidColumnToActivityLogTable())->up();
+    //    }
 }
