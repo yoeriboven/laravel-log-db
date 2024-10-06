@@ -17,14 +17,16 @@
     ],
     "require": {
         "php": "^8.1",
+        "nesbot/carbon": "^2.72",
         "spatie/laravel-package-tools": "^1.9.2"
     },
     "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.39",
         "nunomaduro/collision": "^6.0",
         "orchestra/testbench": "^7.0",
-        "phpunit/phpunit": "^9.5",
         "pestphp/pest": "^1.21",
-        "pestphp/pest-plugin-laravel": "^1.1"
+        "pestphp/pest-plugin-laravel": "^1.1",
+        "phpunit/phpunit": "^9.5"
     },
     "autoload": {
         "psr-4": {
@@ -50,5 +52,8 @@
         }
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "scripts": {
+        "fix": "./vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php"
+    }
 }
