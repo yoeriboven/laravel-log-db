@@ -41,3 +41,33 @@ it('correctly logs exceptions', function () {
         LogMessage::first()->context['exception']
     );
 });
+
+describe('custom connection', function () {
+    it('uses the default connection if no custom connection is set', function () {
+        $model = new LogMessage();
+
+        expect(config('database.default'))->toEqual($model->getConnectionName());
+    });
+
+    it('uses the custom connection if it is set', function () {
+        config()->set('logging.channels.db.connection', 'custom');
+
+        $model = new LogMessage();
+
+        expect(config('logging.channels.db.connection'))->toEqual($model->getConnectionName());
+    });
+
+    it('logs to the correct connection', function () {
+        config()->set('logging.channels.db.connection', 'custom');
+
+        Log::channel('db')->info('Test message');
+
+        $this->assertDatabaseHas('log_messages', [
+            'level_name' => mb_strtoupper('info'),
+            'message' => 'Test message',
+        ], 'custom');
+    });
+});
+
+
+
