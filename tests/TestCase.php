@@ -11,9 +11,7 @@ class TestCase extends Orchestra
     {
         parent::setUp();
 
-//        $this->setUpDatabase();
-        $migration = include __DIR__.'/../database/migrations/create_laravel_log_table.php.stub';
-        $migration->up();
+        $this->setUpDatabase();
     }
 
     protected function getPackageProviders($app)
@@ -26,14 +24,11 @@ class TestCase extends Orchestra
     public function getEnvironmentSetUp($app)
     {
         config()->set('database.default', 'testing');
-
-
     }
 
-//    protected function setUpDatabase()
-//    {
-//        (new CreateActivityLogTable())->up();
-//        (new AddEventColumnToActivityLogTable())->up();
-//        (new AddBatchUuidColumnToActivityLogTable())->up();
-//    }
+    protected function setUpDatabase()
+    {
+        $migration = include __DIR__.'/../database/migrations/create_laravel_log_table.php.stub';
+        $migration->up();
+    }
 }
