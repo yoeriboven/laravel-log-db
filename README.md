@@ -43,7 +43,7 @@ return [
         'db' => [
             'driver'     => 'custom',
             'via'        => DatabaseLogger::class,
-            'connection' => env('LOG_DB_CONNECTION', env('DB_CONNECTION')),
+            'connection' => env('LOG_DB_CONNECTION'),
             'days'       => 7,
         ],
     ]   
@@ -76,6 +76,18 @@ return [
         ],
     ]   
 ]
+```
+
+### Pruning the logs
+You can automatically remove logs older dan `x` days. 
+To do so, set the `days` key in the configuration and add the following to the scheduler:
+
+```php
+$schedule->command('model:prune', [
+    '--model' => [
+        \Yoeriboven\LaravelLogDb\Models\LogMessage::class,
+    ],
+])->daily();
 ```
 
 If no fallback channel is defined it will default to the `single` channel.
