@@ -43,7 +43,8 @@ return [
         'db' => [
             'driver'     => 'custom',
             'via'        => DatabaseLogger::class,
-            'connection' => env('LOG_DB_CONNECTION', env('DB_CONNECTION'))
+            'connection' => env('LOG_DB_CONNECTION', env('DB_CONNECTION')),
+            'days'       => 7,
         ],
     ]   
 ]
