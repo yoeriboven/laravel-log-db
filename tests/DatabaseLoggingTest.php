@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Log;
 use Yoeriboven\LaravelLogDb\DatabaseLogger;
 use Yoeriboven\LaravelLogDb\Models\LogMessage;
@@ -65,4 +66,46 @@ it('logs to the correct connection', function () {
         'level_name' => mb_strtoupper('info'),
         'message' => 'Test message',
     ], 'custom');
+});
+
+it('prunes old logs', function () {
+    config()->set('logging.channels.db.days', 7);
+
+    $message = LogMessage::create([
+        'level' => 200,
+        'level_name' => 'INFO',
+        'message' => 'Test message',
+        'logged_at' => now()->subDays(7),
+        'context' => [],
+        'extra' => [],
+    ]);
+
+    Artisan::call('model:prune', [
+        '--model' => [
+            LogMessage::class,
+        ],
+    ]);
+
+    expect($message->fresh())->toBeNull();
+});
+
+it('doesnt prune new logs', function () {
+    config()->set('logging.channels.db.days', 7);
+
+    $message = LogMessage::create([
+        'level' => 200,
+        'level_name' => 'INFO',
+        'message' => 'Test message',
+        'logged_at' => now()->subDays(7)->addSecond(),
+        'context' => [],
+        'extra' => [],
+    ]);
+
+    Artisan::call('model:prune', [
+        '--model' => [
+            LogMessage::class,
+        ],
+    ]);
+
+    expect($message->fresh())->not->toBeNull();
 });
