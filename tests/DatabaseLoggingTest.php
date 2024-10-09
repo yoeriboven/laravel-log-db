@@ -83,7 +83,7 @@ it('prunes old logs', function () {
     Artisan::call('model:prune', [
         '--model' => [
             LogMessage::class,
-        ]
+        ],
     ]);
 
     expect($message->fresh())->toBeNull();
@@ -104,7 +104,7 @@ it('doesnt prune new logs', function () {
     Artisan::call('model:prune', [
         '--model' => [
             LogMessage::class,
-        ]
+        ],
     ]);
 
     expect($message->fresh())->not->toBeNull();
