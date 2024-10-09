@@ -1,5 +1,14 @@
 # Changelog
 
+### 1.4
+Added support for pruning the logs
+
+### 1.3
+Added support for custom database connections
+
+### 1.2.2
+Fixes bug when array key formatted is not set.
+
 ### 1.2
 Now catches issues when writing to the database and writes them to a fallback driver. [67b0e65](https://github.com/yoeriboven/laravel-log-db/commit/67b0e658dccdc0ec44f3e80734e9535bb9d8cdb2)
 
