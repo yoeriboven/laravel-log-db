@@ -8,9 +8,9 @@
 [![GitHub Code Style Action Status](https://github.com/yoeriboven/laravel-log-db/actions/workflows/php-cs-fixer.yml/badge.svg)](https://github.com/yoeriboven/laravel-log-db/actions/workflows/php-cs-fixer.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/yoeriboven/laravel-log-db.svg?style=flat-square)](https://packagist.org/packages/yoeriboven/laravel-log-db)
 
-This package provides a driver to store log messages in the database.
+This package provides a custom log driver for storing Laravel log messages in the database.
 
-Tested on Laravel 9 and 10.
+Compatible with Laravel 9, 10 and 11.
 
 ```php
 use Illuminate\Support\Facades\Log;
@@ -20,20 +20,20 @@ Log::channel('db')->info('Your message');
 
 ## Installation
 
-You can install the package via composer:
+Install the package via Composer:
 
 ```bash
 composer require yoeriboven/laravel-log-db
 ```
 
-You can publish and run the migrations with:
+Publish and run the migrations:
 
 ```bash
 php artisan vendor:publish --tag="log-db-migrations"
 php artisan migrate
 ```
 
-Now add a new channel to `config/logging.php`.
+Next, configure the db log channel in `config/logging.php`:
 
 ```php
 use Yoeriboven\LaravelLogDb\DatabaseLogger;
@@ -43,8 +43,8 @@ return [
         'db' => [
             'driver'     => 'custom',
             'via'        => DatabaseLogger::class,
-            'connection' => env('LOG_DB_CONNECTION'),
-            'days'       => 7,
+            'connection' => env('LOG_DB_CONNECTION'), // Optional, defaults to app's DB connection
+            'days'       => 7, // Optional, retention period in days
         ],
     ]   
 ]
@@ -52,19 +52,31 @@ return [
 
 ## Usage
 
-You could add the `db` channel to the `stack` channel and then log the normal way.
+To use the db log channel, either:
 
-You could also explicitly log to the database:
-
+1. Add it to the stack channel for combined logging:
 ```php
+// config/logging.php
+return [
+    'channels' => [
+        'stack' => [
+            'channels' => ['single', 'db'],
+        ],
+        // other channels
+    ]
+]
+```
+2. Log directly to the database:
+
+```
 use Illuminate\Support\Facades\Log;
 
-Log::channel('db')->info('Your message');
+Log::channel('db')->info('Your log message');
 ```
 
 ### Fallback channel
 
-In case your database isn't ready you can assign a fallback driver to let you know of any issues.
+If the database is unavailable, you can define a fallback channel to handle logs:
 
 ```php
 // config/logging.php
@@ -79,8 +91,7 @@ return [
 ```
 
 ### Pruning the logs
-You can automatically remove logs older dan `x` days. 
-To do so, set the `days` key in the configuration and add the following to the scheduler:
+To automatically delete logs older than a specified number of days, set the `days` key in the configuration and schedule log pruning:
 
 ```php
 $schedule->command('model:prune', [
