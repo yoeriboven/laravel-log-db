@@ -31,12 +31,8 @@ class LogMessage extends Model
         'extra' => AsArrayObject::class,
     ];
 
-    public function __construct(array $attributes = [])
+    public function getConnectionName(): string
     {
-        parent::__construct($attributes);
-
-        $connection = config('logging.channels.db.connection') ?? config('database.default');
-
-        $this->setConnection($connection);
+        return $this->connection ?: config('logging.channels.db.connection') ?: config('database.default');
     }
 }
