@@ -33,7 +33,7 @@ php artisan vendor:publish --tag="log-db-migrations"
 php artisan migrate
 ```
 
-Next, configure the db log channel in `config/logging.php`:
+Next, configure the database channel in `config/logging.php`:
 
 ```php
 use Yoeriboven\LaravelLogDb\DatabaseLogger;
@@ -52,9 +52,9 @@ return [
 
 ## Usage
 
-To use the db log channel, either:
+To use the database channel, either:
 
-1. Add it to the stack channel for combined logging:
+- Add it to the stack channel for combined logging:
 ```php
 // config/logging.php
 return [
@@ -66,9 +66,9 @@ return [
     ]
 ]
 ```
-2. Log directly to the database:
+- Log directly to the database:
 
-```
+```php
 use Illuminate\Support\Facades\Log;
 
 Log::channel('db')->info('Your log message');
@@ -90,6 +90,8 @@ return [
 ]
 ```
 
+If no fallback channel is defined it will default to the `single` channel.
+
 ### Pruning the logs
 To automatically delete logs older than a specified number of days, set the `days` key in the configuration and schedule log pruning:
 
@@ -100,8 +102,6 @@ $schedule->command('model:prune', [
     ],
 ])->daily();
 ```
-
-If no fallback channel is defined it will default to the `single` channel.
 
 ## Changelog
 
