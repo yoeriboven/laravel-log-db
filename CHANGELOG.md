@@ -1,7 +1,7 @@
 # Changelog
 
 ### 1.4
-Added support for pruning the log
+Added support for pruning the logs
 
 ### 1.3
 Added support for custom database connections
