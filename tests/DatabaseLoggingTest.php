@@ -43,6 +43,26 @@ it('correctly logs exceptions', function () {
     );
 });
 
+it('stores messages over the configured level', function () {
+    config()->set('logging.channels.db.level', 'error');
+
+    Log::channel('db')->debug('Invisible messages');
+    Log::channel('db')->info('Invisible messages');
+    Log::channel('db')->notice('Invisible messages');
+    Log::channel('db')->warning('Invisible messages');
+
+    $this->assertDatabaseMissing('log_messages', [
+        'message' => 'Invisible messages',
+    ]);
+
+    Log::channel('db')->error('Test message');
+
+    $this->assertDatabaseHas('log_messages', [
+        'level_name' => mb_strtoupper('error'),
+        'message' => 'Test message',
+    ]);
+});
+
 it('uses the default connection if no custom connection is set', function () {
     $model = new LogMessage();
 

@@ -5,6 +5,7 @@ namespace Yoeriboven\LaravelLogDb;
 use Exception;
 use Illuminate\Support\Facades\Log;
 use Monolog\Handler\AbstractProcessingHandler;
+use Monolog\Logger;
 use Throwable;
 use Yoeriboven\LaravelLogDb\Models\LogMessage;
 
@@ -16,6 +17,10 @@ class DatabaseHandler extends AbstractProcessingHandler
     protected function write($record): void
     {
         $record = is_array($record) ? $record : $record->toArray();
+
+        if ($currentLevel = config('logging.channels.db.level')) {
+            if ($record['level'] < Logger::toMonologLevel($currentLevel)->value) return;
+        }
 
         $exception = $record['context']['exception'] ?? null;
 
