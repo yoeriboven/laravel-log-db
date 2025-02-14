@@ -1,9 +1,10 @@
 # Changelog
 
-### 1.5
+### 2.0
 
 - Added support for PHP 8.4
 - Adds support for minimum log levels [#28](https://github.com/yoeriboven/laravel-log-db/pull/28)
+- Breaking change: [Cast logged_at to immutable datetime object](https://github.com/yoeriboven/laravel-log-db/pull/33)
 
 ### 1.4
 - Added support for pruning the logs
