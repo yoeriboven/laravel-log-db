@@ -1,5 +1,9 @@
 # Changelog
 
+### 1.5
+
+Added support for PHP 8.4
+
 ### 1.4
 Added support for pruning the logs
 
