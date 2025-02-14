@@ -18,8 +18,8 @@ class DatabaseHandler extends AbstractProcessingHandler
     {
         $record = is_array($record) ? $record : $record->toArray();
 
-        if ($currentLevel = config('logging.channels.db.level')) {
-            if ($record['level'] < Logger::toMonologLevel($currentLevel)->value) return;
+        if ($minimumLevel = config('logging.channels.db.level')) {
+            if ($record['level'] < Logger::toMonologLevel($minimumLevel)->value) return;
         }
 
         $exception = $record['context']['exception'] ?? null;

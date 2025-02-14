@@ -43,7 +43,7 @@ it('correctly logs exceptions', function () {
     );
 });
 
-it('stores messages over the configured level', function () {
+it('stores messages more severe than the minimum level', function () {
     config()->set('logging.channels.db.level', 'error');
 
     Log::channel('db')->debug('Invisible messages');
