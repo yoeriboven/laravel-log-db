@@ -18,8 +18,8 @@ class DatabaseHandler extends AbstractProcessingHandler
     {
         $record = is_array($record) ? $record : $record->toArray();
 
-        if ($minimumLevel = config('logging.channels.db.level')) {
-            if ($record['level'] < Logger::toMonologLevel($minimumLevel)->value) return;
+        if ($this->hasMinimumLevelSet() && ! $this->meetsLevelThreshold($record['level'])) {
+            return;
         }
 
         $exception = $record['context']['exception'] ?? null;
@@ -46,5 +46,21 @@ class DatabaseHandler extends AbstractProcessingHandler
                 'exception' => $e,
             ]);
         }
+    }
+
+    public function hasMinimumLevelSet()
+    {
+        return config('logging.channels.db.level') !== null;
+    }
+
+    public function meetsLevelThreshold(int $currentLevel): bool
+    {
+        $minimumLevel = Logger::toMonologLevel(config('logging.channels.db.level'));
+
+        if (! is_int($minimumLevel)) {
+            $minimumLevel = $minimumLevel->value;
+        }
+
+        return $currentLevel >= $minimumLevel;
     }
 }
