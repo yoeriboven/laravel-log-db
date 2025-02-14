@@ -32,6 +32,7 @@ class LogMessage extends Model
     protected $casts = [
         'context' => AsArrayObject::class,
         'extra' => AsArrayObject::class,
+        'logged_at' => 'immutable_datetime',
     ];
 
     public function getConnectionName(): string
