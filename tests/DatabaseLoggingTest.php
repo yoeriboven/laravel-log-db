@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\CarbonImmutable;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Log;
@@ -128,4 +129,12 @@ it('doesnt prune new logs', function () {
     ]);
 
     expect($message->fresh())->not->toBeNull();
+});
+
+it('casts logged_at to an immutable datetime', function () {
+    Log::channel('db')->info('Test message');
+
+    $message = LogMessage::first();
+
+    expect($message->logged_at)->toBeInstanceOf(CarbonImmutable::class);
 });
