@@ -45,7 +45,7 @@ return [
             'via'        => DatabaseLogger::class,
             'connection' => env('LOG_DB_CONNECTION'), // Optional, defaults to app's DB connection
             'days'       => 7, // Optional, retention period in days
-            'level'      => env('LOG_LEVEL', 'debug'),
+            'level'      => env('LOG_LEVEL', 'debug'), // Optional
         ],
     ]   
 ]
