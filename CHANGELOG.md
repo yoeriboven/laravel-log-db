@@ -1,7 +1,9 @@
 # Changelog
 
-### 2.0
+### 2.1
+- Added support for Laravel 12
 
+### 2.0
 - Added support for PHP 8.4
 - Adds support for minimum log levels [#28](https://github.com/yoeriboven/laravel-log-db/pull/28)
 - Breaking change: [Cast logged_at to immutable datetime object](https://github.com/yoeriboven/laravel-log-db/pull/33)
