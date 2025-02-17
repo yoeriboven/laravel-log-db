@@ -18,7 +18,7 @@ class DatabaseHandler extends AbstractProcessingHandler
     {
         $record = is_array($record) ? $record : $record->toArray();
 
-        if ($this->hasMinimumLevelSet() && ! $this->meetsLevelThreshold($record['level'])) {
+        if ($this->hasMinimumLevelSet() && ! $this->meetsMinimumLevelThreshold($record['level'])) {
             return;
         }
 
@@ -53,7 +53,7 @@ class DatabaseHandler extends AbstractProcessingHandler
         return config('logging.channels.db.level') !== null;
     }
 
-    public function meetsLevelThreshold(int $currentLevel): bool
+    public function meetsMinimumLevelThreshold(int $currentLevel): bool
     {
         $minimumLevel = Logger::toMonologLevel(config('logging.channels.db.level'));
 
