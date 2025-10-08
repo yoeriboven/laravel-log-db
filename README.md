@@ -10,7 +10,7 @@
 
 This package provides a custom log driver for storing Laravel log messages in the database.
 
-Compatible with Laravel 9, 10 and 11.
+Compatible with Laravel 9, 10, 11 and 12.
 
 ```php
 use Illuminate\Support\Facades\Log;
