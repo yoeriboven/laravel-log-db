@@ -11,20 +11,18 @@
     "authors": [
         {
             "name": "Yoeri Boven",
-            "email": "yoeriboven@msn.com",
             "role": "Developer"
         }
     ],
     "require": {
         "php": "^8.2|^8.3|^8.4|^8.5",
-        "laravel/framework": "12.*",
         "nesbot/carbon": "^2.72|^3.0",
-        "orchestra/testbench": "10.*",
         "spatie/laravel-package-tools": "^1.9.2"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.39",
         "nunomaduro/collision": "^8.0",
+        "orchestra/testbench": "^10.0|^11.0",
         "pestphp/pest": "^3.0|^4.0",
         "pestphp/pest-plugin-laravel": "^3.0|^4.0"
     },
