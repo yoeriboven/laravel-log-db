@@ -10,7 +10,6 @@ jobs:
   test:
     runs-on: ${{ matrix.os }}
     strategy:
-      fail-fast: true
       matrix:
         os: [ubuntu-latest]
         php: [8.1, 8.2, 8.3, 8.4]
@@ -27,6 +26,10 @@ jobs:
             testbench: 10.*
           - laravel: 13.*
             testbench: 11.*
+          - php: 8.2
+            pest: 3.0
+          - php: 8.3
+            pest: 4.0
         exclude:
           - php: 8.3
             laravel: 9.*
@@ -63,7 +66,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
+          composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" "pestphp/pest:${{ matrix.pest }}" "pestphp/pest-plugin-laravel:${{ matrix.pest }}" --no-interaction --no-update
           composer update --${{ matrix.stability }} --prefer-dist --no-interaction
 
       - name: Execute tests
