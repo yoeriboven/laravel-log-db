@@ -26,10 +26,10 @@ jobs:
             testbench: 10.*
           - laravel: 13.*
             testbench: 11.*
-          - php: 8.2
-            pest: 3.0
-          - php: 8.3
-            pest: 4.0
+          - php: 8.2.*
+            pest: 3.*
+          - php: 8.3.*
+            pest: 4.*
         exclude:
           - php: 8.3
             laravel: 9.*
