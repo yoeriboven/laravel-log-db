@@ -18,7 +18,7 @@ class DatabaseHandler extends AbstractProcessingHandler
     {
 
 
-        
+
         $record = is_array($record) ? $record : $record->toArray();
 
         if ($this->hasMinimumLevelSet() && ! $this->meetsMinimumLevelThreshold($record['level'])) {
